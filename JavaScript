@@ -1,0 +1,36 @@
+function mudarPasso(passo) {
+    // Ocultar todos os passos
+    let passos = document.querySelectorAll('.passo');
+    passos.forEach(function(p) {
+        p.classList.remove('ativo');
+    });
+
+    // Mostrar o passo correspondente
+    let passoAtivo = document.getElementById('passo-' + passo);
+    passoAtivo.classList.add('ativo');
+}
+
+// Inicialmente, o "passo-0" será exibido
+document.addEventListener('DOMContentLoaded', function() {
+    mudarPasso(0);
+});
+const avanca = document.querySelectorAll('.btn-proximo');
+
+avanca.forEach(button => {
+    button.addEventListener('click', function(){
+        // Obtém o elemento atual com a classe "ativo"
+        const atual = document.querySelector('.ativo');
+        
+        // Pega o próximo elemento a partir do atual
+        const proximo = atual.nextElementSibling;
+
+        // Verifica se existe um próximo elemento
+        if (proximo && proximo.classList.contains('passo')) {
+            // Remove a classe "ativo" do elemento atual
+            atual.classList.remove('ativo');
+            
+            // Adiciona a classe "ativo" ao próximo elemento
+            proximo.classList.add('ativo');
+        }
+    });
+});
